@@ -13,6 +13,7 @@ pipeline {
     environment{
         def appVersion = '' //variable declaration
         nexusUrl = 'http://44.193.213.172:8081/repository/backend/'
+        
         region = "us-east-1"
         // account_id = "315069654700"
     }
@@ -86,6 +87,14 @@ pipeline {
               }
             }
         } */
+
+        stage("Check Network Connectivity") {
+            steps {
+
+                sh "curl -I ${nexusUrl}"
+              }
+            }
+        } 
 
         stage('Nexus Artifact Upload'){
             steps{
