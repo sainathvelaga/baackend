@@ -88,14 +88,13 @@ pipeline {
             }
         } */
 
-        stage("Check Network Connectivity") {
+        stage('Install Dependencies') {
             steps {
-
-                sh "curl -I ${nexusUrl}"
-              }
+               sh """
+                curl -I ${nexusUrl}
+               """
             }
-        } 
-
+        }
         stage('Nexus Artifact Upload'){
             steps{
                 script{
